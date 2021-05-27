@@ -4,7 +4,6 @@ import React from 'react'
 import {
     BrowserRouter as Router,
     Switch,
-    Redirect
 } from "react-router-dom";
 
 import { PublicRoute } from './PublicRoute';
@@ -12,6 +11,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { CasaCambioRouter } from './CasaCambioRouter';
 
 export const AppRouter = () => {
+    const isLoggedIn = false;
     return (
         <div>
                     <Router>
@@ -20,14 +20,14 @@ export const AppRouter = () => {
                 <PublicRoute 
                     path="/app" 
                     component={CasaCambioRouter}
-                    // isAuth={isLoggedIn}
+                    isAuth={isLoggedIn}
                 />
                 
                 <PrivateRoute 
                     exact 
                     path="/admin" 
                     component={()=>(<h1>Wwewe</h1>)}
-                    isAuth={true}
+                    isAuth={isLoggedIn}
                 />
 
             {/* <Redirect to="auth/login"/> */}
