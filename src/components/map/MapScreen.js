@@ -70,11 +70,13 @@ const useStyles=makeStyles((theme)=>{
 
 const menuItems=[
     {
+    id:1,
     text:'Mis notas',
     icon: <SubjectOutlined color="secondary"/>,
     path: '/'
     },
     {
+    id:2,
     text:'Crear nota',
     icon: <AddCircleOutlined color="secondary"/>,
     path: '/create'
@@ -87,9 +89,9 @@ export const MapScreen = (props) => {
     // SETTINGS PARA EL MAPA
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng, setLng] = useState(-70.9);
-    const [lat, setLat] = useState(42.35);
-    const [zoom, setZoom] = useState(9);
+    const [lng, setLng] = useState(-100.5178);
+    const [lat, setLat] = useState(28.69);
+    const [zoom, setZoom] = useState(13.44);
 
     
     useEffect(() => {
@@ -177,7 +179,7 @@ export const MapScreen = (props) => {
             </div>
             {menuItems.map(item=>(
                 <ListItem 
-                    key={item.text}
+                    key={`${item.id}mobile`}
                     button
                     onClick={()=>history.push(item.path)}
                     className={location.pathname==item.path ? classes.active : null}
@@ -204,10 +206,11 @@ export const MapScreen = (props) => {
                 </Typography>
             </div>
             {menuItems.map(item=>(
-                <>
-                <Divider/>
+            <div
+                    key={`${item.id}desktop`}
+            >
+            <Divider/>
                 <ListItem 
-                    key={item.text}
                     button
                     onClick={()=>history.push(item.path)}
                     className={location.pathname===item.path ? classes.active : null}
@@ -218,8 +221,9 @@ export const MapScreen = (props) => {
                     {/* <ListItemIcon>{item.icon}</ListItemIcon> */}
                     {/* <ListItemIcon>{item.icon}</ListItemIcon> */}
                     {/* <ListItemText primary={'Venta'} /> */}
-                </ListItem>
-                </>
+
+                </ListItem>   
+            </div>
             ))}
         </Drawer>
         </Hidden>
